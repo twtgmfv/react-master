@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Index from './views/Index';
-
-ReactDOM.render(<Index/>, document.getElementById('app'));
+let test ='ISES6'
+// Object.assign({},{name:'twt'})
+window.test =test;
+console.log(test);

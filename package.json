@@ -7,17 +7,19 @@
     "build": "webpack"
   },
   "dependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
-    "react-router-dom": "^4.2.2",
-    "vue": "^2.6.8"
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@types/react": "^16.4.12",
+    "@types/react-dom": "^16.0.7",
+    "babel-preset-react": "^6.24.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-react-hmre": "^1.1.1",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "babel-loader": "^8.0.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
