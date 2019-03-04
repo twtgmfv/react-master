@@ -5,9 +5,33 @@
 
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 
-let render = ReactDOM.render(
-    <div>Hello world11</div>,
-    document.getElementById("app")
-);
+// let render = ReactDom.render(
+//     <div>Hello world  55566</div>,
+//     document.getElementById("app")
+// );
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Hello React 666</h1>
+            </div>
+        )
+    }
+}
+
+if (module.hot) {
+    module.hot.accept(() => {
+        ReactDom.render(
+            <App/>,
+            document.getElementById('app')
+        )
+    })
+}
+
+ReactDom.render(
+    <App/>,
+    document.getElementById('app')
+)
