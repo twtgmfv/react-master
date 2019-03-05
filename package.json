@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config build/webpack.prod.config.js",
     "dev": "webpack-dev-server --progress --colors --inline --config build/webpack.dev.config.js"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "@babel/preset-typescript": "^7.0.0",
     "@jianlc/tools": "^1.0.9",
     "babel-preset-react": "^6.24.1",
+    "global": "^4.3.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   },
@@ -21,11 +22,17 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
+    "autoprefixer": "^9.4.10",
     "babel-loader": "^8.0.0",
     "cache-loader": "^2.0.1",
     "clean-webpack-plugin": "^1.0.1",
+    "css-loader": "^2.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1",

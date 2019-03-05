@@ -26,11 +26,13 @@ console.log(Math_add(3, 5));
 //     document.getElementById("app")
 // );
 
+
+import style from './style.scss'
 class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>Hello React 6562</h1>
+                <h1 className={style.green}>Hello React 6562</h1>
             </div>
         )
     }
