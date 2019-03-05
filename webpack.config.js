@@ -33,13 +33,15 @@ module.exports = {
             name:'manifest'
         },
         splitChunks: {
-            chunks: "all",
-            minSize:30,
+            chunks: "initial",
+            name:'vendors',
             cacheGroups: {
-                vendors:{
-                    name:'vendors',
-                    test:/react/,
+                math:{
+                    name:'tools',
+                    test:/jianlc/,
                     minChunks:1,
+                    minSize:0,
+                    priority:10,
                     reuseExistingChunk: true
                 }
             }
