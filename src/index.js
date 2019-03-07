@@ -1,7 +1,4 @@
-// let test ='ISES6'
-// // Object.assign({},{name:'twt'})
-// window.test =test;
-// console.log(test);
+
 
 
 import React from 'react';
@@ -14,6 +11,8 @@ import {Math_add} from '@jianlc/tools'
 
 console.log(Math_add(3, 5));
 
+
+
 // import {square, cube} from './lib/math'
 //
 // let temSquare = square(2);
@@ -25,7 +24,10 @@ console.log(Math_add(3, 5));
 //     <div>Hello world  55566</div>,
 //     document.getElementById("app")
 // );
-
+// let a = new Map();
+// let b = Promise.resolve();
+Object.assign({},{1:1});
+console.log("foobar".includes('foo'));
 
 import style from './style.scss'
 class App extends React.Component {
@@ -33,6 +35,8 @@ class App extends React.Component {
         return (
             <div>
                 <h1 className={style.green}>Hello React 6562</h1>
+                <p>我是tools计算的值：{Math_add(6,2)}</p>
+                <p>测试ES6-API:{"foobar".includes('foo')+""}</p>
             </div>
         )
     }
@@ -51,3 +55,5 @@ ReactDom.render(
     <App/>,
     document.getElementById('app')
 )
+
+

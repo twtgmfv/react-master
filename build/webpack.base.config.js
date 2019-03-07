@@ -1,6 +1,9 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")//webpack4提取样式到单独文件,并且进行压缩，配合下面两个插件使用
+
 const path = require('path');
+const isDev = false;
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {
@@ -10,15 +13,17 @@ module.exports = {
         rules: [
             {
                 test: /\.j(s|sx)$/,
-                exclude: /node_modules/,
-                include: path.resolve(__dirname,'../src'),
+                // exclude: /node_modules/,
+                // include: [path.resolve(__dirname,'../src'),/@jianlc/],
+                // include: /jianlc/,
                 use: [
                     'cache-loader',
                     {
                         loader: 'babel-loader',
                         // 开启缓存功能
                         options: {
-                            cacheDirectory: true
+                            cacheDirectory: true,
+                            // configFile: path.resolve(__dirname, '../babel.config.js')
                         }
                     }
 
@@ -28,7 +33,7 @@ module.exports = {
                 test: /\.s?[ac]ss$/,
                 include: path.resolve(__dirname,'../src'),
                 use: [
-                    'style-loader',
+                   isDev && 'style-loader' || MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -64,16 +69,23 @@ module.exports = {
             chunks: "initial",
             name: 'vendors',
             cacheGroups: {
-                math: {
+                tools: {
                     name: 'tools',
                     test: /jianlc/,
                     minChunks: 1,
                     minSize: 0,
                     priority: 10,
                     reuseExistingChunk: true
+                },
+                styles:{
+                    name:'styles',
+                    test: /\.scss|css$/,
+                    chunks: "all",
+                    enforce: true
                 }
             }
         },
+
     },
 
     plugins: [
@@ -81,6 +93,11 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),
             filename: "./index.html"
-        })
+        }),
+        /*提取css到页面引入*/
+        new MiniCssExtractPlugin({
+            filename: '[name].[chunkhash:5].css',
+            // chunkFilename: '[id].css'
+        }),
     ]
 };
