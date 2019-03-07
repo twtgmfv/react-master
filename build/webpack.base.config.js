@@ -1,9 +1,11 @@
+const Webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")//webpack4提取样式到单独文件,并且进行压缩，配合下面两个插件使用
-
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const path = require('path');
-const isDev = false;
+const isDev = process.env.NODE_ENV === 'development';
+console.log("ENV:::::", isDev);
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {
@@ -31,14 +33,14 @@ module.exports = {
             },
             {
                 test: /\.s?[ac]ss$/,
-                include: path.resolve(__dirname,'../src'),
+                include: path.resolve(__dirname, '../src'),
                 use: [
-                   isDev && 'style-loader' || MiniCssExtractPlugin.loader,
+                    isDev && 'style-loader' || MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
-                            modules:true,
-                            sourceMap:true,
+                            modules: true,
+                            sourceMap: true,
                             localIdentName: '[name]-[hash:base64:5]',
                         }
                     },
@@ -77,8 +79,8 @@ module.exports = {
                     priority: 10,
                     reuseExistingChunk: true
                 },
-                styles:{
-                    name:'styles',
+                styles: {
+                    name: 'styles',
                     test: /\.scss|css$/,
                     chunks: "all",
                     enforce: true
@@ -90,6 +92,10 @@ module.exports = {
 
     plugins: [
         // new CleanWebpackPlugin('dist'),
+        new Webpack.DllReferencePlugin({
+            // 描述 react 动态链接库的文件内容
+            manifest: require('../dist/site/vendor-manifest.json'),
+        }),
         new HtmlWebPackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),
             filename: "./index.html"
@@ -98,6 +104,11 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[chunkhash:5].css',
             // chunkFilename: '[id].css'
+        }),
+
+        new AddAssetHtmlPlugin({
+            filepath: require.resolve(path.resolve(__dirname,`../dist/site/dll_vendor.js`)),
+            includeSourcemap: false
         }),
     ]
 };

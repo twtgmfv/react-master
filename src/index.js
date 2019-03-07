@@ -7,9 +7,9 @@ import ReactDom from 'react-dom';
 
 //测试treeShaking
 
-import {Math_add} from '@jianlc/tools'
+// import {Math_add} from '@jianlc/tools'
 
-console.log(Math_add(3, 5));
+// console.log(Math_add(3, 5));
 
 
 
@@ -34,8 +34,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h1 className={style.green}>Hello React 6562</h1>
-                <p>我是tools计算的值：{Math_add(6,2)}</p>
+                <h1 className={style.green}>Hello React </h1>
+
                 <p>测试ES6-API:{"foobar".includes('foo')+""}</p>
             </div>
         )

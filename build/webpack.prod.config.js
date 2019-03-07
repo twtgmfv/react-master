@@ -17,7 +17,7 @@ module.exports = WebpackMerge(WebpackBaseConfig, {
         },
         devtool: false,// 生产环境不开启sourceMap
         plugins: [
-            new CleanWebpackPlugin(['../dist'], {allowExternal: true}),
+            // new CleanWebpackPlugin(['../dist'], {allowExternal: true}),
             // 缓存模块
             new Webpack.HashedModuleIdsPlugin(),
             new HtmlWebPackPlugin({
