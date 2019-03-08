@@ -26,6 +26,7 @@ console.log(Math_add(3, 5));
 // );
 // let a = new Map();
 // let b = Promise.resolve();
+import img from '../static/img.png'
 Object.assign({},{1:1});
 console.log("foobar".includes('foo'));
 
@@ -37,6 +38,7 @@ class App extends React.Component {
                 <h1 className={style.green}>Hello React 6562</h1>
                 <p>我是tools计算的值：{Math_add(6,2)}</p>
                 <p>测试ES6-API:{"foobar".includes('foo')+""}</p>
+                <img src="../static/img.png" alt=""/>
             </div>
         )
     }
