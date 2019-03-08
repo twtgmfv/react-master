@@ -10,7 +10,7 @@ let isDev = process.env.ENV === 'development';
 console.log('base-isDev:::', process.env.ENV);
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.jsx'),
+    entry: path.resolve(__dirname, '../src/index.js'),
     output: {
         filename: "js/[name].js"
     },
