@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dll": "webpack --mode production --config dll/webpack.dll.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --colors --inline --config build/webpack.dev.config.js"
+    "build": "cross-env ENV=production webpack --config build/webpack.prod.config.js",
+    "dev": "cross-env ENV=development webpack-dev-server --inline --config build/webpack.dev.config.js"
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
@@ -30,6 +30,7 @@
     "cache-loader": "^2.0.1",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^5.2.0",
+    "css-hot-loader": "^1.4.3",
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.7.0",

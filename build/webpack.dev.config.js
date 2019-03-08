@@ -33,12 +33,13 @@ module.exports = WebpackMerge(WebpackBaseConfig, {
         devtool: 'inline-source-map',
         devServer: {
             // port: '3000',
-            contentBase: path.join(__dirname, 'dist'),
+            contentBase: path.join(__dirname, '../dist'),
             compress: true,
             historyApiFallback: true,
             hot: true,
             https: false,
             noInfo: true,
+            clientLogLevel:'none',
             open: true,
             proxy: {}
         },

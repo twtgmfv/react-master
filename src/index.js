@@ -35,10 +35,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h1 className={style.green}>Hello React 6562</h1>
+                <h1 className={style.green}>Hello React!!!</h1>
                 <p>我是tools计算的值：{Math_add(6,2)}</p>
                 <p>测试ES6-API:{"foobar".includes('foo')+""}</p>
-                <img src="../static/img.png" alt=""/>
+                {/*<img src="../static/img.png" alt=""/>*/}
             </div>
         )
     }

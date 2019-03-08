@@ -7,9 +7,13 @@ const path = require('path');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin') //css压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //js压缩
 
-const isDev = process.env.NODE_ENV === 'development';
-console.log('isDev:::',isDev);
+// const isDev = process.env.NODE_ENV === 'development';
+// console.log('prod-isDev:::',isDev);
 
+// process.env.NODE_ENV = 'production';
+// let isDev = process.env.NODE_ENV === 'development';
+// // console.log('prod-isDev:::',isDev);
+let isDev = false
 
 module.exports = WebpackMerge(WebpackBaseConfig, {
         mode: 'production',

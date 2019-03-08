@@ -6,24 +6,24 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");//webpack4提取样式到单独文件,并且进行压缩，配合下面两个插件使用
 
 const path = require('path');
-const isDev = process.env.NODE_ENV === 'development';
-console.log('isDev:::',isDev);
+let isDev = process.env.ENV === 'development';
+console.log('base-isDev:::', process.env.ENV);
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {
         filename: "js/[name].js"
     },
-    externals:{
-      // 'react':'react',
-      // 'react-dom':'react-dom'
+    externals: {
+        // 'react':'react',
+        // 'react-dom':'react-dom'
     },
     module: {
         rules: [
             {
                 test: /\.j(s|sx)$/,
                 // exclude: /node_modules/,
-                include: [path.resolve(__dirname,'../src'),/@jianlc/],
+                include: [path.resolve(__dirname, '../src'), /@jianlc/],
                 // include: /jianlc/,
                 use: [
                     'cache-loader',
@@ -32,7 +32,7 @@ module.exports = {
                         // 开启缓存功能
                         options: {
                             cacheDirectory: true,
-                            configFile: path.resolve(__dirname, '../babel.config.js')
+                            // configFile: path.resolve(__dirname, '../babel.config.js')
                         }
                     }
 
@@ -40,14 +40,14 @@ module.exports = {
             },
             {
                 test: /\.s?[ac]ss$/,
-                include: path.resolve(__dirname,'../src'),
+                include: path.resolve(__dirname, '../src'),
                 use: [
-                   isDev && 'style-loader' || MiniCssExtractPlugin.loader,
+                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
-                            modules:true,
-                            sourceMap:true,
+                            modules: true,
+                            sourceMap: true,
                             localIdentName: '[name]-[hash:base64:5]',
                         }
                     },
@@ -80,7 +80,7 @@ module.exports = {
                         }
                     }
                 }]
-                    .concat(!isDev && [ //图片压缩
+                    .concat(!isDev ? [ //图片压缩
                         {
                             loader: 'image-webpack-loader',
                             options: {
@@ -100,7 +100,7 @@ module.exports = {
                                 }
                             }
                         }
-                    ] || [])
+                    ] : [])
             },
             //字体
             {
@@ -141,8 +141,8 @@ module.exports = {
                     priority: 10,
                     reuseExistingChunk: true
                 },
-                styles:{
-                    name:'styles',
+                styles: {
+                    name: 'styles',
                     test: /\.scss|css$/,
                     chunks: "all",
                     enforce: true
@@ -197,10 +197,20 @@ module.exports = {
             // chunkFilename: '[id].css'
         }),
         // 告诉 Webpack 使用了哪些动态链接库
-        // new Webpack.DllReferencePlugin({
-        //     // 描述 lodash 动态链接库的文件内容
-        //     manifest: require('../src/assets/vendor/react.manifest.json')
-        // })
-
+        new Webpack.DllReferencePlugin({
+            // 描述 lodash 动态链接库的文件内容
+            manifest: require('../src/assets/vendor/react.manifest.json')
+        }),
+        // 该插件将把给定的 JS 或 CSS 文件添加到 webpack 配置的文件中，并将其放入资源列表 html webpack插件注入到生成的 html 中。
+        new AddAssetHtmlPlugin([
+            {
+                // 要添加到编译中的文件的绝对路径，以及生成的HTML文件。支持globby字符串
+                filepath: require.resolve(path.resolve(__dirname, '../src/assets/vendor/react.dll.js')),
+                // 文件输出目录
+                // outputPath: 'react',
+                // 脚本或链接标记的公共路径
+                // publicPath: 'react'
+            }
+        ])
     ]
 };
