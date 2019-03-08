@@ -37,12 +37,23 @@ module.exports = WebpackMerge(WebpackBaseConfig, {
             contentBase: path.join(__dirname, '../dist'),
             compress: true,
             historyApiFallback: true,
+            overlay:false,
             hot: true,
             https: false,
             noInfo: true,
             clientLogLevel:'none',
             open: true,
-            proxy: {}
+            proxy: {
+               /* '/api/': {
+                    changeOrigin: true,
+                    // 目标地址
+                    target: 'http://localhost:3000',
+                    // 重写路径
+                    pathRewrite: {
+                        '^/api/': '/'
+                    }
+                }*/
+            }
         },
         plugins: [
             new Webpack.HotModuleReplacementPlugin(), //添加

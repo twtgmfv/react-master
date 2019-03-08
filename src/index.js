@@ -6,13 +6,22 @@ class App extends Component{
     render() {
         return (
             <div>
-                <h1>hahahah</h1>
+                <h1>hah99944078787</h1>
             </div>
         )
     }
 }
 
+if (module.hot) {
+    module.hot.accept(() => {
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('app')
+        )
+    })
+}
+
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.getElementById('app')
-);
+)
