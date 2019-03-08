@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dll": "webpack --mode production --config dll/webpack.dll.config.js",
+    "build:dll": "webpack --mode production --config build/webpack.dll.config.js",
     "build": "cross-env ENV=production webpack --config build/webpack.prod.config.js",
     "dev": "cross-env ENV=development webpack-dev-server --inline --config build/webpack.dev.config.js"
   },
@@ -15,10 +15,14 @@
     "babel-preset-react": "^6.24.1",
     "global": "^4.3.2",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/polyfill": "^7.0.0",

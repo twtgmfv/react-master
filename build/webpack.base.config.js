@@ -10,9 +10,15 @@ let isDev = process.env.ENV === 'development';
 console.log('base-isDev:::', process.env.ENV);
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.js'),
+    entry: path.resolve(__dirname, '../src/index.jsx'),
     output: {
         filename: "js/[name].js"
+    },
+    resolve: {
+        alias:{
+            "@":path.resolve(__dirname,'../src')
+        },
+        extensions: ['.js','.jsx']
     },
     externals: {
         // 'react':'react',
@@ -199,18 +205,7 @@ module.exports = {
         // 告诉 Webpack 使用了哪些动态链接库
         new Webpack.DllReferencePlugin({
             // 描述 lodash 动态链接库的文件内容
-            manifest: require('../src/assets/vendor/react.manifest.json')
-        }),
-        // 该插件将把给定的 JS 或 CSS 文件添加到 webpack 配置的文件中，并将其放入资源列表 html webpack插件注入到生成的 html 中。
-        new AddAssetHtmlPlugin([
-            {
-                // 要添加到编译中的文件的绝对路径，以及生成的HTML文件。支持globby字符串
-                filepath: require.resolve(path.resolve(__dirname, '../src/assets/vendor/react.dll.js')),
-                // 文件输出目录
-                // outputPath: 'react',
-                // 脚本或链接标记的公共路径
-                // publicPath: 'react'
-            }
-        ])
+            manifest: require('../src/assets/vendor/vendors.manifest.json')
+        })
     ]
 };
