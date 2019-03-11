@@ -11,7 +11,6 @@
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
-    "@jianlc/tools": "^1.0.9",
     "babel-preset-react": "^6.24.1",
     "global": "^4.3.2",
     "react": "^16.8.3",

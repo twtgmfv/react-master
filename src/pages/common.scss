@@ -1,0 +1,9 @@
+body{
+  background: green;
+}
+.red{
+  color: red;
+}
+:global(.red){
+  color: red;
+}
