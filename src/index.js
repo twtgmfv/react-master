@@ -1,26 +1,28 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // import Index from './views/Index';
 // import Index from './pages/Index'
 // 异步按需加载component
 
 import common from './pages/common.scss'
-function asyncComponent(getComponent) {
+
+/*function asyncComponent(getComponent) {
     return class AsyncComponent extends React.Component {
         static Component = null;
-        state = { Component: AsyncComponent.Component };
+        state = {Component: AsyncComponent.Component};
 
         componentWillMount() {
             if (!this.state.Component) {
                 getComponent().then(({default: Component}) => {
                     AsyncComponent.Component = Component
-                    this.setState({ Component })
+                    this.setState({Component})
                 })
             }
         }
+
         render() {
-            const { Component } = this.state
+            const {Component} = this.state
             if (Component) {
                 return <Component {...this.props} />
             }
@@ -28,27 +30,39 @@ function asyncComponent(getComponent) {
         }
     }
 }
+
 function load(component) {
-    return import(/*webpackChunkName:"app/Index"*/`./pages/Index.js`)
+    return import(/!*webpackChunkName:"app/Index"*!/`./pages/Index.js`)
     // return import(`./pages/${component}/`)
 }
-const Index = asyncComponent(() => import(/*webpackChunkName:"app/Index"*/`./pages/Index.js`));
 
-class App extends Component{
+const Index = asyncComponent(() => import(/!*webpackChunkName:"app/Index"*!/`./pages/Index.js`));
+const Counter = asyncComponent(() => import(/!*webpackChunkName:"app/Counter"*!/`./pages/Counter.js`));*/
+
+
+import loadable from 'react-loadable'
+const Index = loadable({
+    loader: () => import(/*webpackChunkName:"app/Index"*/`./pages/Index.js`),
+    loading: () => <div>loading</div>
+});
+const Counter = loadable({
+    loader: () => import(/*webpackChunkName:"app/Counter"*/`./pages/Counter.js`),
+    loading: () => <div>loading</div>
+});
+class App extends Component {
     render() {
         return (
             <div>
                 <h1>RouterTest</h1>
 
                 <Router>
-                        <div>
-                            <Link to="/">返回</Link>
-                            <Link to="/index">首页</Link>
-                            <Route path="/index" component={
-                                Index
-                                // import( /* webpackChunkName: "app/Index" */ './pages/Index').default
-                            }/>
-                        </div>
+                    <div>
+                        <Link to="/">返回</Link>
+                        <Link to="/index">首页</Link>
+                        <Link to="/counter">计算器</Link>
+                        <Route path="/index" component={Index}/>
+                        <Route path="/counter" component={Counter}/>
+                    </div>
                 </Router>
             </div>
         )
