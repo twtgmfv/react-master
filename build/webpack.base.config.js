@@ -7,8 +7,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");//webpack4提取
 
 const path = require('path');
 let isDev = process.env.NODE_ENV === 'development';
-console.log('base-isDev:::', process.env.NODE_ENV);
-
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {

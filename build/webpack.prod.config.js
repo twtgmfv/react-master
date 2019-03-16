@@ -9,7 +9,6 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin') //css压
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //js压缩
 
 let isDev = process.env.NODE_ENV === 'development';
-console.log('prod-isDev:::',isDev);
 module.exports = WebpackMerge(WebpackBaseConfig, {
         mode: 'production',
         output: {
@@ -72,7 +71,7 @@ module.exports = WebpackMerge(WebpackBaseConfig, {
                     }
                 }),
                 new OptimizeCSSPlugin({
-                    cssProcessorOptions: isDev ? true : false ? {
+                    cssProcessorOptions: isDev ? {
                         safe: true,
                         map: {
                             inline: false
