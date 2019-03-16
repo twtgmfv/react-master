@@ -6,8 +6,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");//webpack4提取样式到单独文件,并且进行压缩，配合下面两个插件使用
 
 const path = require('path');
-let isDev = process.env.ENV === 'development';
-console.log('base-isDev:::', process.env.ENV);
+let isDev = process.env.NODE_ENV === 'development';
+console.log('base-isDev:::', process.env.NODE_ENV);
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
@@ -29,7 +29,7 @@ module.exports = {
             {
                 test: /\.j(s|sx)$/,
                 // exclude: /node_modules/,
-                include: [path.resolve(__dirname, '../src'), /@jianlc/],
+                include: [path.resolve(__dirname, '../src'),/@jianlc/],
                 // include: /jianlc/,
                 use: [
                     'cache-loader',
@@ -38,7 +38,7 @@ module.exports = {
                         // 开启缓存功能
                         options: {
                             cacheDirectory: true,
-                            // configFile: path.resolve(__dirname, '../babel.config.js')
+                            configFile: path.resolve(__dirname, '../babel.config.js')//不能使用babelrc文件，否则对node_modules下ES6转换时报错
                         }
                     }
 
