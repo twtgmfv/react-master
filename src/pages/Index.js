@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import IndexCss from './Index.scss'
 class Index extends Component {
     constructor(props) {
         super(props);

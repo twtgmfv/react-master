@@ -4,7 +4,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");//webpack4提取样式到单独文件,并且进行压缩，配合下面两个插件使用
-
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 let isDev = process.env.NODE_ENV === 'development';
 module.exports = {
@@ -13,10 +13,10 @@ module.exports = {
         filename: "js/[name].js"
     },
     resolve: {
-        alias:{
-            "@":path.resolve(__dirname,'../src')
+        alias: {
+            "@": path.resolve(__dirname, '../src')
         },
-        extensions: ['.js','.jsx']
+        extensions: ['.js', '.jsx']
     },
     externals: {
         // 'react':'react',
@@ -27,7 +27,7 @@ module.exports = {
             {
                 test: /\.j(s|sx)$/,
                 // exclude: /node_modules/,
-                include: [path.resolve(__dirname, '../src'),/@jianlc/],
+                include: [path.resolve(__dirname, '../src'), /@jianlc/],
                 // include: /jianlc/,
                 use: [
                     'cache-loader',
@@ -148,7 +148,7 @@ module.exports = {
                 styles: {
                     name: 'styles',
                     test: /\.scss|css$/,
-                    chunks: "all",
+                    chunks: "initial",
                     enforce: true
                 }
 
@@ -197,8 +197,19 @@ module.exports = {
         }),
         /*提取css到页面引入*/
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[chunkhash:5].css',
-            // chunkFilename: '[id].css'
+            filename: 'css/[name].[chunkhash:5].css'
+        }),
+        new OptimizeCSSAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorPluginOptions: {
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true
+                    },
+                    normalizeUnicode: false
+                }]
+            }
         }),
         // 告诉 Webpack 使用了哪些动态链接库
         new Webpack.DllReferencePlugin({

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {Math_add,Math_sub} from '@jianlc/tools'
 let sum =Math_add(3,3);
-// let sum1 =Math_sub(3,3);
+let sum1 =Math_sub(3,3);
 console.log(sum);
 // import Index from './views/Index';
 // import Index from './pages/Index'
