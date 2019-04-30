@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 let isDev = process.env.NODE_ENV === 'development';
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.js'),
+    entry: path.resolve(__dirname, '../src/indexRedux.js'),//TODO:注意切换不同入口文件    indexRedux为学习redux文件
     output: {
         filename: "js/[name].js"
     },
