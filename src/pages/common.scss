@@ -1,5 +1,9 @@
 body{
-  background: green;
+  background: gainsboro;
+  /*导航边距*/
+  a{
+    margin-right: 10px;
+  }
 }
 .red{
   color: red;
@@ -7,3 +11,4 @@ body{
 :global(.red){
   color: red;
 }
+

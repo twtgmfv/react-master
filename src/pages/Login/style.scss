@@ -1,0 +1,26 @@
+//@import "./reset";
+@import "./dafult";
+
+
+
+.success {
+  color: $success;
+}
+
+.warning {
+  color: $warning;
+}
+
+.login {
+  line-height: 1.5;
+  padding: 20px;
+
+  form {
+    margin-top: 20px;
+  }
+
+  button {
+    margin: 20px;
+    width: 100px;
+  }
+}

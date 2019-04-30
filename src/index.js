@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+/*测试treesharking*/
 import {Math_add,Math_sub} from '@jianlc/tools'
 let sum =Math_add(3,3);
 let sum1 =Math_sub(3,3);
-console.log(sum);
+/*i*/
+console.log(sum,sum1);
 // import Index from './views/Index';
 // import Index from './pages/Index'
 // 异步按需加载component
 
 
-import common from './pages/common.scss'
+import './pages/common.scss'
 
 /*function asyncComponent(getComponent) {
     return class AsyncComponent extends React.Component {
@@ -54,6 +56,10 @@ const Counter = loadable({
     loader: () => import(/*webpackChunkName:"app/Counter"*/`./pages/Counter.js`),
     loading: () => <div>loading</div>
 });
+const Login = loadable({
+    loader: () => import(/*webpackChunkName:"app/Login"*/`./pages/Login/Login.js`),
+    loading: () => <div>loading</div>
+});
 class App extends Component {
     render() {
         return (
@@ -65,8 +71,10 @@ class App extends Component {
                         <Link to="/">返回</Link>
                         <Link to="/index">首页</Link>
                         <Link to="/counter">计算器</Link>
+                        <Link to="/login">登录</Link>
                         <Route path="/index" component={Index}/>
                         <Route path="/counter" component={Counter}/>
+                        <Route path="/login" component={Login}/>
                     </div>
                 </Router>
             </div>
